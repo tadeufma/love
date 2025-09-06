@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 50px 70px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #e94e77;
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 10px;
+}
+/* Animação do contêiner */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* Estilos para o contêiner de corações */
+#heart-rain-container {
+    position: fixed; /* Fixa o contêiner na tela */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa a tela toda */
+    pointer-events: none; /* Permite clicar através dele */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    overflow: hidden; /* Esconde corações que saem da tela */
+}
+
+/* Estilos para cada coração individual */
+.heart {
+    position: absolute;
+    bottom: -50px; /* Começa abaixo da tela */
+    opacity: 0; /* Começa invisível */
+    animation: floatUp 5s ease-out forwards; /* Animação de subida */
+    transform: translateX(-50%); /* Centraliza o coração na sua coluna */
+}
+
+/* A animação de subida */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(-50%) scale(0.5); /* Começa embaixo, pequeno */
+        opacity: 0;
+    }
+    20% {
+        opacity: 1; /* Fica visível rapidamente */
+    }
+    100% {
+        transform: translateY(-100vh) translateX(-50%) scale(1.5); /* Sobe e cresce */
+        opacity: 0; /* Desaparece no topo */
+    }
+}
