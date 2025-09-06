@@ -46,36 +46,36 @@ p {
 }
 /* Estilos para o contêiner de corações */
 #heart-rain-container {
-    position: fixed; /* Fixa o contêiner na tela */
+    position: fixed; 
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Ocupa a tela toda */
-    pointer-events: none; /* Permite clicar através dele */
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    overflow: hidden; /* Esconde corações que saem da tela */
+    height: 100%;
+    pointer-events: none; 
+    z-index: 1000; 
+    overflow: hidden; 
 }
 
 /* Estilos para cada coração individual */
 .heart {
     position: absolute;
-    bottom: -50px; /* Começa abaixo da tela */
-    opacity: 0; /* Começa invisível */
-    animation: floatUp 5s ease-out forwards; /* Animação de subida */
-    transform: translateX(-50%); /* Centraliza o coração na sua coluna */
+    bottom: -50px; 
+    opacity: 0;
+    animation: floatUp 5s ease-out forwards;
+    transform: translateX(-50%); 
 }
 
 /* A animação de subida */
 @keyframes floatUp {
     0% {
-        transform: translateY(0) translateX(-50%) scale(0.5); /* Começa embaixo, pequeno */
+        transform: translateY(0) translateX(-50%) scale(0.5); 
         opacity: 0;
     }
     20% {
-        opacity: 1; /* Fica visível rapidamente */
+        opacity: 1; 
     }
     100% {
-        transform: translateY(-100vh) translateX(-50%) scale(1.5); /* Sobe e cresce */
-        opacity: 0; /* Desaparece no topo */
+        transform: translateY(-100vh) translateX(-50%) scale(1.5); 
+        opacity: 0; 
     }
 }
