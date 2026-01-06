@@ -1,7 +1,20 @@
 /* ==========================================================================
-   PARTE 1: Lógica do botão "Não" (Fugir)
+   CONFIGURAÇÃO INICIAL (Roda apenas quando a página termina de carregar)
    ========================================================================== */
-const botaoNao = document.getElementById("nao");
+window.onload = function() {
+    // Essa proteção garante que o código só rode quando o botão já existe na tela
+    const botaoNao = document.getElementById("nao");
+
+    // Verifica se o botão existe antes de adicionar o evento (evita tela branca de erro)
+    if (botaoNao) {
+        botaoNao.addEventListener('mouseover', desvia);
+        botaoNao.addEventListener('touchstart', desvia);
+    }
+}
+
+/* ==========================================================================
+   FUNÇÕES AUXILIARES
+   ========================================================================== */
 
 // Função que gera uma posição aleatória
 function geraPosicao(min, max) {
@@ -10,7 +23,7 @@ function geraPosicao(min, max) {
 
 // Função que faz o botão desviar
 function desvia(event) {
-    // Evita comportamentos padrões do touch
+    // Evita comportamentos padrões do touch (como zoom)
     if (event.type === 'touchstart') event.preventDefault();
     
     var btn = event.target;
@@ -20,34 +33,38 @@ function desvia(event) {
     console.log('Opa, desviei...');
 }
 
-// Adiciona os eventos para Computador (mouseover) e Celular (touchstart)
-botaoNao.addEventListener('mouseover', desvia);
-botaoNao.addEventListener('touchstart', desvia);
-
-
 /* ==========================================================================
-   PARTE 2: Lógica do botão "Sim" (Troca de tela + Chuva)
+   A MÁGICA DO "SIM" (Vídeo + Chuva)
    ========================================================================== */
-
 function aceitou() {
-    // 1. Esconde a tela do pedido
+   
     document.getElementById("tela-pedido").style.display = "none";
-    
-    // 2. Mostra a tela de sucesso
     document.getElementById("tela-sucesso").style.display = "block";
     
-    // 3. Inicia a chuva de corações (Sua animação entra aqui!)
+
     iniciarChuvaDeCoracoes();
+
+    
+    const placeholder = document.getElementById("video-placeholder");
+    
+    
+    placeholder.innerHTML = `
+        <video autoplay loop controls style="width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+            <source src="images/video-amor.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+    `;
 }
 
-
 /* ==========================================================================
-   PARTE 3: Sua Animação de Corações (Encapsulada)
+   ANIMAÇÃO DOS CORAÇÕES
    ========================================================================== */
 function iniciarChuvaDeCoracoes() {
     const container = document.getElementById('heart-rain-container');
     const svgPath = 'images/coracao.svg'; 
     
+    if (!container) return; 
+
     let heartCount = 0;
     const maxHearts = 100; 
     const intervalTime = 100; 
@@ -57,21 +74,17 @@ function iniciarChuvaDeCoracoes() {
         heart.src = svgPath;
         heart.classList.add('heart');
         
-        // Posição horizontal aleatória
         const randomLeft = Math.random() * 100;
         heart.style.left = `${randomLeft}%`;
         
-        // Tamanho aleatório
         const randomSize = Math.random() * (40 - 20) + 20;
         heart.style.width = `${randomSize}px`;
         heart.style.height = `${randomSize}px`;
 
-        // Duração da queda aleatória (para ficar mais natural)
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Entre 3s e 5s
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
 
         container.appendChild(heart);
 
-        // Remove o coração do HTML quando a animação acabar (limpeza de memória)
         heart.addEventListener('animationend', () => {
             heart.remove();
         });

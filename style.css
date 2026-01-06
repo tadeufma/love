@@ -8,7 +8,7 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #fceabb 0%, #f8b5a0 100%);
-    overflow: hidden; /* Adicionado para evitar barras de rolagem quando os corações caírem */
+    overflow: hidden; 
 }
 
 .container {
@@ -17,8 +17,8 @@ body {
     padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    position: relative; /* Garante que fique acima do fundo */
-    z-index: 10; /* Garante que o painel fique na frente da chuva */
+    position: relative; 
+    z-index: 10; 
 }
 
 h1 {
@@ -81,24 +81,24 @@ button:active {
    A PARTE NOVA (ANIMAÇÃO) COMEÇA AQUI
    ========================================= */
 
-/* O container invisível que segura a chuva */
+
 #heart-rain-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Deixa você clicar nas coisas através da chuva */
-    z-index: 5; /* Fica atrás da caixa branca (.container) mas na frente do fundo */
+    pointer-events: none; 
+    z-index: 5; 
 }
 
 /* O estilo de cada coração */
 .heart {
     position: absolute;
-    top: -10vh; /* Nasce acima da tela */
-    animation-name: fall; /* Chama a animação 'fall' */
-    animation-timing-function: linear; /* Velocidade constante */
-    animation-fill-mode: forwards; /* Mantém a posição final quando termina */
+    top: -10vh; 
+    animation-name: fall; 
+    animation-timing-function: linear; 
+    animation-fill-mode: forwards; 
 }
 
 /* A coreografia da queda */
@@ -108,7 +108,75 @@ button:active {
         opacity: 1;
     }
     100% {
-        transform: translateY(110vh) rotate(360deg); /* Cai e gira um pouco */
-        opacity: 0; /* Desaparece suavemente no final */
+        transform: translateY(110vh) rotate(360deg); 
+        opacity: 0; 
+    }
+}
+
+#video-placeholder {
+    margin-top: 30px; 
+    width: 100%;
+    max-width: 560px; 
+    margin-left: auto; 
+    margin-right: auto;
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+/* Faz o iframe do YouTube se ajustar ao container */
+#video-placeholder iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    border: none;
+}
+
+@media (max-width: 600px) {
+    
+    /* Ajusta o fundo para rolar se o conteúdo for grande */
+    body {
+        height: auto;
+        min-height: 100vh; 
+        padding: 20px 0; 
+        align-items: flex-start; 
+    }
+
+    /* A caixa branca fica mais leve e ocupa quase toda a largura */
+    .container {
+        width: 90%; 
+        max-width: 400px; 
+        padding: 30px 20px; 
+        margin-top: 20px; 
+    }
+
+   
+    h1 {
+        font-size: 1.8em; 
+        margin-bottom: 20px;
+    }
+
+    
+    .gif-pedido {
+        width: 80%; 
+        max-width: 200px;
+    }
+
+    
+    button {
+        padding: 15px 30px; 
+        font-size: 1em; 
+        width: 100%; 
+    }
+
+    
+    .botoes {
+        gap: 15px;
+        flex-direction: row;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    #nao {
+        
+        z-index: 100; 
     }
 }
