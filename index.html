@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Um pedido especial</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Voce aceita namorar comigo?</h1>
-             <img src="/Love/images/ursinho.gif" alt="Ursinho fazendo um pedido" class="gif-pedido">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um pedido especial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="tela-pedido">
+            <h1>Você aceita namorar comigo?</h1>
+            
+            <img src="/love/images/ursinho.gif" alt="Cachorro atrás da mesa" class="gif-pedido">
+            
             <div class="botoes">
-                <button id="sim">sim</button>
-                <button id="nao">nao</button>
+                <button id="sim" onclick="aceitou()">SIM</button>
+                <button id="nao">NÃO</button>
             </div>
-            <script src="script.js"></script>
         </div>
-    </body>
+
+        <div id="tela-sucesso" style="display: none;">
+            <h1>Te amo meu amor! ❤️</h1>
+            <h2>Melhor escolha da sua vida!</h2>
+            
+            <div id="heart-rain-container"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

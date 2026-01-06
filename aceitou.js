@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('heart-rain-container');
-    const svgPath = 'images/coracao.svg'; 
+    const svgPath = '/love/images/coracao.svg';
     
     // Configurações da animação
     let heartCount = 0;

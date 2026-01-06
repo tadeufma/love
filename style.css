@@ -8,6 +8,7 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #fceabb 0%, #f8b5a0 100%);
+    overflow: hidden; /* Adicionado para evitar barras de rolagem quando os corações caírem */
 }
 
 .container {
@@ -16,6 +17,8 @@ body {
     padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative; /* Garante que fique acima do fundo */
+    z-index: 10; /* Garante que o painel fique na frente da chuva */
 }
 
 h1 {
@@ -67,8 +70,45 @@ button:active {
     box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
     transition: none;
 }
+
 .gif-pedido {
-    width: 250px; /* Ou o tamanho que você quiser */
+    width: 250px;
     height: auto;
-    margin-top: -10px; /* Ajuste para mover o GIF para cima ou para baixo */
+    margin-top: -10px;
+}
+
+/* =========================================
+   A PARTE NOVA (ANIMAÇÃO) COMEÇA AQUI
+   ========================================= */
+
+/* O container invisível que segura a chuva */
+#heart-rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Deixa você clicar nas coisas através da chuva */
+    z-index: 5; /* Fica atrás da caixa branca (.container) mas na frente do fundo */
+}
+
+/* O estilo de cada coração */
+.heart {
+    position: absolute;
+    top: -10vh; /* Nasce acima da tela */
+    animation-name: fall; /* Chama a animação 'fall' */
+    animation-timing-function: linear; /* Velocidade constante */
+    animation-fill-mode: forwards; /* Mantém a posição final quando termina */
+}
+
+/* A coreografia da queda */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg); /* Cai e gira um pouco */
+        opacity: 0; /* Desaparece suavemente no final */
+    }
 }
